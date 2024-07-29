@@ -7,7 +7,7 @@ USER VIEW
 4. course page
 5. placement page
 6. registration page
-7. Enquiry + location + add page
+7. get in touch page
 8. recuriter page
 
    ADMIN VIEW

@@ -1,0 +1,173 @@
+create database Project;
+use Project;
+
+create table Course_Master(course_id INT PRIMARY KEY auto_increment,
+    course_name VARCHAR(255),
+    course_description VARCHAR(255),
+    course_duration INT,
+    course_syllabus TEXT,
+    age_grp_type VARCHAR(50),
+    course_is_active BOOLEAN,
+    cover_photo VARCHAR(255),
+    video_id INT,
+    FOREIGN KEY(video_id) REFERENCES Video_Master(video_id)
+    );
+    drop table Course_Master;
+    
+    create table Batch_Master(batch_id INT PRIMARY KEY auto_increment,
+    batch_name VARCHAR(255),             
+    batch_start_time TIME,
+    batch_end_time TIME,
+    course_id INT,
+    presentation_date DATETIME,           
+    course_fees INT,
+    course_fees_from DATE,
+    course_fees_to DATE,
+    batch_is_active BOOLEAN,
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id)
+);
+drop table Batch_Master;
+CREATE TABLE Staff_Master (
+    staff_id INT PRIMARY KEY auto_increment,
+    staff_name VARCHAR(255),
+    photo_url VARCHAR(255),
+    staff_mobile INT unique,
+    staff_email VARCHAR(255) UNIQUE,
+    staff_username VARCHAR(255),
+    staff_password VARCHAR(255),
+    staff_role VARCHAR(255)
+);
+
+
+CREATE TABLE Video_Master (
+    video_id INT PRIMARY KEY AUTO_INCREMENT,
+    video_description VARCHAR(60),
+    video_url VARCHAR(255),
+    batch_id INT,
+    start_date DATE,
+    end_date DATE,
+    video_is_active BOOLEAN
+);
+
+CREATE TABLE Student_Master (
+    student_id INT PRIMARY KEY auto_increment,
+    student_name VARCHAR(30),
+    student_address VARCHAR(60),
+    student_gender VARCHAR(10),
+    photo_url VARCHAR(255),
+    student_dob DATE,
+    student_qualification VARCHAR(20),
+    student_mobile INT,
+    course_fee DECIMAL(10, 2),
+    batch_id INT,
+    course_id INT,
+    student_password VARCHAR(15),
+    student_username VARCHAR(15) UNIQUE,
+    FOREIGN KEY (batch_id) REFERENCES Batch_Master(batch_id),
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id)
+);
+CREATE TABLE Album_Master (
+    album_id INT PRIMARY KEY AUTO_INCREMENT,
+    album_name VARCHAR(255),
+    album_description VARCHAR(255),
+    start_date DATETIME,
+    end_date DATETIME,
+    album_is_active BOOLEAN
+);
+CREATE TABLE Image_Master (
+    image_id INT PRIMARY KEY AUTO_INCREMENT,
+    image_path VARCHAR(255),
+    album_id INT,
+    is_album_cover BOOLEAN,
+    image_is_active BOOLEAN,
+    FOREIGN KEY (album_id) REFERENCES Album_Master(album_id)
+);
+CREATE TABLE Payment_Type_Master (
+    payment_typeID INT PRIMARY KEY AUTO_INCREMENT,
+    payment_type_desc VARCHAR(255)
+);
+CREATE TABLE Closure_Reason_Master (
+    closure_reasonID INT PRIMARY KEY AUTO_INCREMENT,
+    closure_reason_desc VARCHAR(255)
+);
+CREATE TABLE Enquiry (
+    enquiry_id INT PRIMARY KEY auto_increment,
+    enquirer_name VARCHAR(255),
+    enquirer_address VARCHAR(255),
+    enquirer_mobile INT,
+    enquirer_alternate_mobile INT,
+    enquirer_email_id VARCHAR(255) UNIQUE,
+    enquiry_date DATE,
+    enquirer_query VARCHAR(255),
+    closure_reasonID INT,
+    closure_reason VARCHAR(255),
+    enquiry_processed_flag BOOLEAN,
+    course_id INT,
+    staff_id INT,
+    student_name VARCHAR(255),
+    enquiry_counter INT,
+    follow_up_date DATE,
+    FOREIGN KEY (closure_reasonID) REFERENCES Closure_Reason_Master(closure_reasonID),
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
+    FOREIGN KEY (staff_id) REFERENCES Staff_Master(staff_id)
+);
+CREATE TABLE Followup (
+    followup_id INT PRIMARY KEY AUTO_INCREMENT,
+    enquiry_id INT,
+    staff_id INT,
+    followup_date DATE,
+    followup_msg VARCHAR(150),
+    is_active BOOLEAN,
+    FOREIGN KEY (enquiry_id) REFERENCES Enquiry(enquiry_id),
+    FOREIGN KEY (staff_id) REFERENCES Staff_Master(staff_id)
+);
+CREATE TABLE Payment (
+    payment_id INT PRIMARY KEY auto_increment,
+    payment_typeID INT,
+    payment_date DATE,
+    student_id INT,
+    course_id INT,
+    batch_id INT,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (payment_typeID) REFERENCES Payment_Type_Master(payment_typeID),
+    FOREIGN KEY (student_id) REFERENCES Student_Master(student_id),
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
+    FOREIGN KEY (batch_id) REFERENCES Batch_Master(batch_id)
+);
+
+CREATE table Receipt(
+Receipt_id int PRIMARY KEY auto_increment,
+Receipt_date date,
+Receipt_Amount double,
+payment_id int,
+foreign key(payment_id) references Payment(payment_id)
+);
+
+CREATE TABLE Announcement (
+    Announsement_id INT PRIMARY KEY,
+    Announsement_text VARCHAR(300),
+    Annousement_date DATE,
+    is_valid BOOLEAN
+);
+
+CREATE TABLE Placement_Master (
+    student_id INT,        
+    course_id INT,        
+    course_name VARCHAR(255), 
+    batch_id INT,          
+    batch_name VARCHAR(50), 
+    duration VARCHAR(50), 
+    company_name VARCHAR(50), 
+    FOREIGN KEY (student_id) REFERENCES Student_Master(student_id),
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
+    FOREIGN KEY (batch_id) REFERENCES Batch_Master(batch_id)
+);
+CREATE TABLE Authentication (
+    user_name VARCHAR(50) PRIMARY KEY, 
+    password VARCHAR(50)              
+);
+
+
+
+
+

@@ -1,0 +1,1 @@
+restart the browser (firefox) every time u run the application

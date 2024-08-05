@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import '../../css/PostCard.css'; // Import your custom CSS
+import './css/PostCard.css'; // Import your custom CSS
 
 const PostCard = ({ image, title, text }) => {
     return (

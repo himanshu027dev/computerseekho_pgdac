@@ -4,7 +4,7 @@ import Carousel from './components/carsousel';
 import PostCard from './components/PostCard';
 import Footer from './components/Footer'; // Import the Footer component
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/PostCard.css'; // Import your custom CSS for PostCard
+import './components/css/PostCard.css'; // Import your custom CSS for PostCard
 
 export default function Home() {
   return (
@@ -26,6 +26,10 @@ export default function Home() {
               title="Another Title"
               text="Here is some more text for another post card. You can customize this as needed."
             />
+          </div>
+          <div>
+            <h1>about us</h1>
+            <p>lorem</p>
           </div>
         </div>
       </div>

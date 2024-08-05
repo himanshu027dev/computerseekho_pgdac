@@ -23,6 +23,15 @@ export default function Header() {
                     <LinkContainer to="/Contactus">
                         <Nav.Link className={`nav-link ${location.pathname === '/Contactus' ? 'active' : ''}`}>CONTACT</Nav.Link>
                     </LinkContainer>
+                    <LinkContainer to="/Placement">
+                        <Nav.Link className={`nav-link ${location.pathname === '/Placement' ? 'active' : ''}`}>Placement</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/CampusLife">
+                        <Nav.Link className={`nav-link ${location.pathname === '/CampusLife' ? 'active' : ''}`}>CampusLife</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/Faculty">
+                        <Nav.Link className={`nav-link ${location.pathname === '/Faculty' ? 'active' : ''}`}>Faculty</Nav.Link>
+                    </LinkContainer>
                     <NavDropdown title="Courses" id="basic-nav-dropdown">
                         <LinkContainer to="/Services/DAC">
                             <NavDropdown.Item>DAC</NavDropdown.Item>
@@ -32,6 +41,9 @@ export default function Header() {
                         </LinkContainer>
                         <LinkContainer to="/Services/MSCIT">
                             <NavDropdown.Item>MSCIT</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/Services/Fantasia">
+                            <NavDropdown.Item>Fantasia</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
                 </Nav>

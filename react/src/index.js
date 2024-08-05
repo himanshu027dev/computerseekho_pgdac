@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,12 +10,15 @@ import DAC from './js/DAC';
 import DBDA from './js/DBDA';
 import MSCIT from './js/MSCIT';
 import ContactUs from './js/contactus';
-
+import Header from './js/components/Header';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
+ 
   <BrowserRouter>
     <Routes>
+    
    
       <Route path="/" element={<App />} />
       <Route path="Home" element={<Home />} />
@@ -25,7 +29,7 @@ root.render(
         
     </Routes>
   </BrowserRouter>
-
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

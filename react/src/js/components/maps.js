@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Card.css'; // Import the CSS file for styling
+import '../../css/Card.css'; // Import the CSS file for styling
 
 function Maps() {
   return (

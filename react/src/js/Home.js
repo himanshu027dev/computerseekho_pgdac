@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from './Header';
-import Carousel from './carsousel';
-import PostCard from './PostCard';
-import Footer from './Footer'; // Import the Footer component
+import Header from './components/Header';
+import Carousel from './components/carsousel';
+import PostCard from './components/PostCard';
+import Footer from './components/Footer'; // Import the Footer component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/PostCard.css'; // Import your custom CSS for PostCard
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const EnquiryCard = () => {
-  const [formData, setFormData] = useState({ enqname: '', course: '', equiry: '' });
+  const [formData, setFormData] = useState({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', altenqphone: '' });
   const courses = ['CDAC', 'DBDA', 'MSCIT']; // Hardcoded course options
   let navigate = useNavigate();
 
@@ -26,14 +26,14 @@ const EnquiryCard = () => {
     }).then(r => { console.log(r) });
 
     // Reset form fields
-    setFormData({ enqname: '', course: '', equiry: '' });
+    setFormData({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', altenqphone: '' });
 
     // Navigate to another page if needed
     navigate('/home');
   };
 
   return (
-    <Card style={{ width: '40rem', margin: 'auto', marginTop: '2rem', height: '30rem' }}>
+    <Card style={{ width: '40rem', margin: 'auto', marginTop: '2rem' }}>
       <Card.Body>
         <Card.Title>Enquiry Form</Card.Title>
         <Form onSubmit={handleSubmit}>
@@ -45,6 +45,7 @@ const EnquiryCard = () => {
               placeholder="Enter your name"
               value={formData.enqname}
               onChange={handleChange}
+              required
             />
           </Form.Group>
 
@@ -55,6 +56,7 @@ const EnquiryCard = () => {
               name="course"
               value={formData.course}
               onChange={handleChange}
+              required
             >
               <option>Select a course</option>
               {courses.map((course, index) => (
@@ -70,12 +72,53 @@ const EnquiryCard = () => {
             <Form.Control
               as="textarea"
               name="equiry"
-              rows={3}
+              rows={5}
               placeholder="Enter your enquiry"
               value={formData.equiry}
               onChange={handleChange}
+              required
             />
           </Form.Group>
+
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="enqemail"
+              placeholder="Enter your email"
+              value={formData.enqemail}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Row>
+            <Col>
+              <Form.Group controlId="formPhone">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="enqphone"
+                  placeholder="Enter your phone number"
+                  value={formData.enqphone}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId="formAltPhone">
+                <Form.Label>Alternate Phone (optional)</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="altenqphone"
+                  placeholder="Enter your alternate phone number"
+                  value={formData.altenqphone}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
 
           <Button style={{ marginTop: '2rem' }} variant="primary" type="submit" className="w-100">
             Submit

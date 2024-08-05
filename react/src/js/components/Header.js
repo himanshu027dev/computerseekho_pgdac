@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/header.css';
+import '../../css/header.css';
 
 export default function Header() {
+    const [courses, setCourses] = useState([]);
     const location = useLocation();
+
+    useEffect(() => {
+        // Fetch the list of courses from the backend
+        fetch('http://localhost:8080/api/courses')
+            .then(response => response.json())
+            .then(data => {
+                // Filter only active courses
+                const activeCourses = data.filter(course => course.courseIsActive);
+                setCourses(activeCourses);
+            })
+            .catch(error => console.error('Error fetching courses:', error));
+    }, []);
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg" className="mt-3">
@@ -33,27 +46,20 @@ export default function Header() {
                         <Nav.Link className={`nav-link ${location.pathname === '/Faculty' ? 'active' : ''}`}>Faculty</Nav.Link>
                     </LinkContainer>
                     <NavDropdown title="Courses" id="basic-nav-dropdown">
-                        <LinkContainer to="/Services/DAC">
-                            <NavDropdown.Item>DAC</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/Services/DBDA">
-                            <NavDropdown.Item>DBDA</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/Services/MSCIT">
-                            <NavDropdown.Item>MSCIT</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/Services/Fantasia">
-                            <NavDropdown.Item>Fantasia</NavDropdown.Item>
-                        </LinkContainer>
+                        {courses.map(course => (
+                            <LinkContainer key={course.courseId} to={`/Services/${course.courseName}`}>
+                                <NavDropdown.Item>{course.courseName}</NavDropdown.Item>
+                            </LinkContainer>
+                        ))}
                     </NavDropdown>
                 </Nav>
                 <div className="nav-spacer"></div>
                 <Nav className="ml-auto">
                     <LinkContainer to="/SignUp">
-                        <Nav.Link className={`nav-link signup-signin-link1 ${location.pathname === '/SignUp' ? 'active' : ''}`}>SIGNUP</Nav.Link>
+                        <Nav.Link className={`nav-link signup-signin-link1 ${location.pathname === '/SignUp' ? 'active' : ''}`}>SIGN UP</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/SignIn">
-                        <Nav.Link className={`nav-link signup-signin-link ${location.pathname === '/SignIn' ? 'active' : ''}`}>SIGNIN</Nav.Link>
+                        <Nav.Link className={`nav-link signup-signin-link ${location.pathname === '/SignIn' ? 'active' : ''}`}>SIGN IN</Nav.Link>
                     </LinkContainer>
                 </Nav>
             </Navbar.Collapse>

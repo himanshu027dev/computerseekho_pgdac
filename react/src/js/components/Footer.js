@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/Footer.css'; // Import your custom CSS
+import '../../css/Footer.css'; // Import your custom CSS
 
 export default function Footer() {
     return (

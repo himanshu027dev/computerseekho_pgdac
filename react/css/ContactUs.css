@@ -1,5 +1,5 @@
 .contact-us {
-    max-width: 800px;
+    max-width: 5000px;
     margin: auto;
     padding: 20px;
   }
@@ -15,5 +15,16 @@
   h1 {
     text-align: center;
     margin-bottom: 20px;
+  }
+  .contactdetails {
+    /* Add any styles for the main contact-us container */
+  }
+  
+  .contactdetails h1 {
+    margin-bottom: 4rem; /* Adjust this value for more or less spacing */
+  }
+  
+  .origin {
+    margin-top: 3rem; /* Adjust this value for more or less spacing */
   }
   

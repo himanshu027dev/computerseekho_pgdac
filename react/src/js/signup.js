@@ -1,39 +1,3 @@
-// import React from 'react';
-// import "./signup.css"; 
-// import { Link } from 'react-router-dom';
-
-// const Signup = () => {
-//   return (
-//     <div className="addUser">
-//       <h1>Sign Up</h1>
-//       <form className="addUserForm">
-//         <div className="formField">
-//           <label htmlFor="name">Name:</label>
-//           <input type="text" id="name" autoComplete="off" placeholder="Enter your name" />
-//         </div>
-//         <div className="formField">
-//           <label htmlFor="email">Email:</label>
-//           <input type="email" id="email" autoComplete="off" placeholder="Enter your email" />
-//         </div>
-//         <div className="formField">
-//           <label htmlFor="password">Password:</label>
-//           <input type="password" id="password" autoComplete="off" placeholder="Enter your password" />
-//         </div>
-//         <div className="formField">
-//           <label htmlFor="password">Confirm Password:</label>
-//           <input type="password" id="password" autoComplete="off" placeholder="confirm your password" />
-//         </div>
-//         <button type="submit" className="btn btn-success">Sign Up</button>
-//       </form>
-//       <div className="login">
-//         <p>Already have an account? <Link to="/login">Login</Link></p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Signup;
-
 import React, { useState } from 'react';
 import "./signup.css"; 
 import { Link } from 'react-router-dom';
@@ -43,17 +7,22 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
   });
-
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
-      [id]: value
-    });
+    if (id === 'confirmPassword') {
+      setConfirmPassword(value);
+    } else {
+      setFormData({
+        ...formData,
+        [id]: value
+      });
+    }
   };
 
   const validate = () => {
@@ -66,8 +35,8 @@ const Signup = () => {
       newErrors.email = 'Email address is invalid';
     }
     if (!formData.password) newErrors.password = 'Password is required';
-    if (!formData.confirmPassword) newErrors.confirmPassword = 'Confirm password is required';
-    if (formData.password !== formData.confirmPassword) {
+    if (!confirmPassword) newErrors.confirmPassword = 'Confirm password is required';
+    if (formData.password !== confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
     
@@ -75,15 +44,31 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      // Perform signup logic
-      console.log('Form data is valid:', formData);
-    } else {
-      console.log('Form data is invalid:', errors);
+      try {
+        console.log('FormData Object:', formData);
+        console.log('Stringified FormData:', JSON.stringify(formData));
+  
+        const response = await fetch('http://localhost:8080/api/admin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+  
+        // Handle the response...
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        setErrors({ form: 'An error occurred. Please try again later.' });
+      }
     }
   };
+  
+  
+  
 
   return (
     <div className="addUser">
@@ -132,11 +117,13 @@ const Signup = () => {
             id="confirmPassword" 
             autoComplete="off" 
             placeholder="Confirm your password" 
-            value={formData.confirmPassword}
+            value={confirmPassword}
             onChange={handleChange}
           />
           {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
+        {errors.form && <span className="error">{errors.form}</span>}
+        {successMessage && <span className="success">{successMessage}</span>}
         <button type="submit" className="btn btn-success">Sign Up</button>
       </form>
       <div className="login">
@@ -147,5 +134,3 @@ const Signup = () => {
 }
 
 export default Signup;
-
-

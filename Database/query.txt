@@ -1,0 +1,3 @@
+ insert into image_master (path_name,url) values ('dbda_sept22','img/Batchwise/dbda_sept22.png'),('dbda_march22','img/Batchwis
+e/dbda_march22.png'),('dbda_march23','img/Batchwise/dbda_march23.png'),('dac_sept22','img/Batchwise/dac_sept22.png'),('dac_march23','
+img/Batchwise/dac_march23.png'),('dac_march22','img/Batchwise/dac_march22.png');

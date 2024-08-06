@@ -65,12 +65,21 @@ public class AdminController
     @Autowired
     private AdminModel model;
 
-    @GetMapping(value = "api/admin_id/{name}")
-    public ResponseEntity<AdminLogin> getAdmin(@PathVariable String name) 
-    {
-        Optional<AdminLogin> admin = model.getAdmin(name);
-        return admin.map(ResponseEntity::ok)
-                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+//    @GetMapping(value = "api/admin_id/{name}")
+//    public ResponseEntity<AdminLogin> getAdmin(@PathVariable String name) 
+//    {
+//        Optional<AdminLogin> admin = model.getAdmin(name);
+//        return admin.map(ResponseEntity::ok)
+//                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+//    }
+    
+    @GetMapping(value = "/api/admin_id/")
+    public ResponseEntity<Optional<AdminLogin>> login(@RequestBody AdminLogin admin) {
+        Optional<AdminLogin> foundUser = model.getAdmin(admin);
+        if (foundUser != null && foundUser.get().getPassword().equals(admin.getPassword())) {
+            return ResponseEntity.ok(foundUser);
+        }
+        return ResponseEntity.status(401).build(); // Unauthorized
     }
 
     @PostMapping(value = "api/admin")

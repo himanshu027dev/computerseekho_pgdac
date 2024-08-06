@@ -3,7 +3,7 @@ import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const EnquiryCard = () => {
-  const [formData, setFormData] = useState({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', altenqphone: '' });
+  const [formData, setFormData] = useState({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', enqphonealt: '' });
   const courses = ['CDAC', 'DBDA', 'MSCIT']; // Hardcoded course options
   let navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const EnquiryCard = () => {
     }).then(r => { console.log(r) });
 
     // Reset form fields
-    setFormData({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', altenqphone: '' });
+    setFormData({ enqname: '', course: '', equiry: '', enqemail: '', enqphone: '', enqphonealt: '' });
 
     // Navigate to another page if needed
     navigate('/home');
@@ -97,7 +97,7 @@ const EnquiryCard = () => {
               <Form.Group controlId="formPhone">
                 <Form.Label>Phone</Form.Label>
                 <Form.Control
-                  type="number"
+                  type="tel"
                   name="enqphone"
                   placeholder="Enter your phone number"
                   value={formData.enqphone}
@@ -110,10 +110,10 @@ const EnquiryCard = () => {
               <Form.Group controlId="formAltPhone">
                 <Form.Label>Alternate Phone (optional)</Form.Label>
                 <Form.Control
-                  type="number"
-                  name="altenqphone"
+                  type="tel"
+                  name="enqphonealt"
                   placeholder="Enter your alternate phone number"
-                  value={formData.altenqphone}
+                  value={formData.enqphonealt}
                   onChange={handleChange}
                 />
               </Form.Group>

@@ -20,8 +20,13 @@ public class AdminModelImpl implements AdminModel
 		repository.save(admin);
 	}
 	
-	public Optional<AdminLogin> getAdmin(String name)
+//	public Optional<AdminLogin> getAdmin(String name)
+//	{
+//		return repository.findByEmail(name);
+//	}
+	
+	public Optional<AdminLogin> getAdmin(AdminLogin admin)
 	{
-		return repository.findByEmail(name);
+		return repository.findByEmail(admin.getEmail());
 	}
 }

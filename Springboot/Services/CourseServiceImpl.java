@@ -1,11 +1,12 @@
 package com.example.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Entity.Courses;
+import com.example.Entities.Courses;
 import com.example.Repositories.CourseRepository;
 @Service
 public class CourseServiceImpl implements CourseService 
@@ -27,8 +28,36 @@ public class CourseServiceImpl implements CourseService
 	}
 	
 	@Override
-	public List<Courses> getActive() {
+	public List<String> getActive() {
 		return courseRepository.getActiveCourse(); 
 	}
 
+	@Override
+	public List<Courses> getCourses() {
+		return courseRepository.findAll();
+	}
+
+	@Override
+	public void addCourse(Courses course) {
+		courseRepository.save(course);
+		
+	}
+	 @Override
+	    public void updateCourse(Courses course, int id) {
+	        courseRepository.updateCourseDetails(
+	            course.getCourseDescription(),
+	            course.getCourseDuration(),
+	            course.isCourseIsActive(),
+	            course.getCourseName(),
+	            course.getCourseSyllabus(),
+	            course.getCoverPhoto(),
+	            course.getVideoId(),
+	            id
+	        );
+	 }
+	
+	@Override
+	 public void softDeleteCourse(int id) {
+	        courseRepository.deleteById(id);
+	    }
 }

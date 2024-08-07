@@ -13,7 +13,7 @@ create table Course_Master(course_id INT PRIMARY KEY auto_increment,
     FOREIGN KEY(video_id) REFERENCES Video_Master(video_id)
     );
     drop table Course_Master;
-    
+-----------------------------------------------------------------------------    
     create table Batch_Master(batch_id INT PRIMARY KEY auto_increment,
     batch_name VARCHAR(255),             
     batch_start_time TIME,
@@ -27,6 +27,7 @@ create table Course_Master(course_id INT PRIMARY KEY auto_increment,
     FOREIGN KEY (course_id) REFERENCES Course_Master(course_id)
 );
 drop table Batch_Master;
+-----------------------------------------------------------------------------
 CREATE TABLE Staff_Master (
     staff_id INT PRIMARY KEY auto_increment,
     staff_name VARCHAR(255),
@@ -59,6 +60,7 @@ CREATE TABLE Student_Master (
     student_qualification VARCHAR(20),
     student_mobile INT,
     course_fee DECIMAL(10, 2),
+
     batch_id INT,
     course_id INT,
     student_password VARCHAR(15),
@@ -66,6 +68,30 @@ CREATE TABLE Student_Master (
     FOREIGN KEY (batch_id) REFERENCES Batch_Master(batch_id),
     FOREIGN KEY (course_id) REFERENCES Course_Master(course_id)
 );
+
+-------------------------------------------------------------
+CREATE TABLE Enquiry (
+    enquiry_id INT PRIMARY KEY auto_increment,
+    enquirer_name VARCHAR(255),
+    enquirer_address VARCHAR(255),
+    enquirer_mobile INT,
+    enquirer_alternate_mobile INT,
+    enquirer_email_id VARCHAR(255) UNIQUE,
+    enquiry_date DATE,
+    enquirer_query VARCHAR(255),
+    closure_reasonID INT,
+    closure_reason VARCHAR(255),
+    enquiry_processed_flag BOOLEAN,
+    course_id INT,
+    staff_id INT,
+    student_name VARCHAR(255),
+    enquiry_counter INT,
+    follow_up_date DATE,
+    FOREIGN KEY (closure_reasonID) REFERENCES Closure_Reason_Master(closure_reasonID),
+    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
+    FOREIGN KEY (staff_id) REFERENCES Staff_Master(staff_id)
+);
+--------------------------------------------------------------
 CREATE TABLE Album_Master (
     album_id INT PRIMARY KEY AUTO_INCREMENT,
     album_name VARCHAR(255),
@@ -90,27 +116,7 @@ CREATE TABLE Closure_Reason_Master (
     closure_reasonID INT PRIMARY KEY AUTO_INCREMENT,
     closure_reason_desc VARCHAR(255)
 );
-CREATE TABLE Enquiry (
-    enquiry_id INT PRIMARY KEY auto_increment,
-    enquirer_name VARCHAR(255),
-    enquirer_address VARCHAR(255),
-    enquirer_mobile INT,
-    enquirer_alternate_mobile INT,
-    enquirer_email_id VARCHAR(255) UNIQUE,
-    enquiry_date DATE,
-    enquirer_query VARCHAR(255),
-    closure_reasonID INT,
-    closure_reason VARCHAR(255),
-    enquiry_processed_flag BOOLEAN,
-    course_id INT,
-    staff_id INT,
-    student_name VARCHAR(255),
-    enquiry_counter INT,
-    follow_up_date DATE,
-    FOREIGN KEY (closure_reasonID) REFERENCES Closure_Reason_Master(closure_reasonID),
-    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
-    FOREIGN KEY (staff_id) REFERENCES Staff_Master(staff_id)
-);
+
 CREATE TABLE Followup (
     followup_id INT PRIMARY KEY AUTO_INCREMENT,
     enquiry_id INT,

@@ -51,3 +51,29 @@ mysql> select * from image_master;
 +----------+-------------------+----------------------+
 
 
+INSERT INTO student_master (student_name, student_gender, b_id, c_id, dob, mobile_num, student_qualification, address) VALUES
+('Abdul Qadar Ali Husain', 'Male', 6, 1, '1996-03-15', 9999999999, 'B.Tech', 'Dummy Address'),
+('Aditya Manjrekar', 'Male', 6, 1, '1995-07-22', 9999999999, 'B.Tech', 'Dummy Address'),
+('Aditi Shukla', 'Female', 5, 1, '1997-09-10', 9999999999, 'B.Tech', 'Dummy Address'),
+('Aditya Pal', 'Male', 5, 1, '1996-11-03', 9999999999, 'B.Tech', 'Dummy Address'),
+('Abhay Vijay', 'Male', 4, 1, '1995-05-18', 9999999999, 'B.Tech', 'Dummy Address'),
+('Abhinav Singh', 'Male', 4, 1, '1994-08-25', 9999999999, 'B.Tech', 'Dummy Address'),
+('Acchutam Kulte', 'Male', 4, 1, '1996-12-01', 9999999999, 'B.Tech', 'Dummy Address'),
+('Abhishek Kumar', 'Male', 3, 2, '1997-02-14', 9999999999, 'B.Tech', 'Dummy Address'),
+('Aniket Khupte', 'Male', 3, 2, '1995-10-30', 9999999999, 'B.Tech', 'Dummy Address'),
+('Ajay Rathod', 'Male', 2, 2, '1996-04-05', 9999999999, 'B.Tech', 'Dummy Address'),
+('Akshay Kadam', 'Male', 2, 2, '1994-06-12', 9999999999, 'B.Tech', 'Dummy Address'),
+('Abhijeet Dange', 'Male', 1, 2, '1997-01-28', 9999999999, 'B.Tech', 'Dummy Address'),
+('Akash Mahale', 'Male', 1, 2, '1996-09-19', 9999999999, 'B.Tech', 'Dummy Address');
+
+
+INSERT INTO batch_master (batch_name, batch_start_date, batch_end_time, batch_is_active, course_fees, cid)
+VALUES 
+    ('DBDA_March_2023', '2023-03-01', '2023-09-01', 0, 125000, 2),
+    ('DBDA_Sept_2022', '2022-09-01', '2023-03-01', 0, 110000, 2),
+    ('DBDA_March_2022', '2022-03-01', '2022-09-01', 0, 110000, 2),
+    ('PG_DAC_Sept_2022', '2022-09-01', '2023-03-01', 0, 90000, 1),
+    ('PG_DAC_March_2023', '2023-03-01', '2023-09-01', 0, 95000, 1),
+    ('PG_DAC_March_2022', '2022-03-01', '2022-09-01', 0, 90000, 1);
+
+

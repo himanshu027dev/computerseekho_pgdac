@@ -1,3 +1,53 @@
  insert into image_master (path_name,url) values ('dbda_sept22','img/Batchwise/dbda_sept22.png'),('dbda_march22','img/Batchwis
 e/dbda_march22.png'),('dbda_march23','img/Batchwise/dbda_march23.png'),('dac_sept22','img/Batchwise/dac_sept22.png'),('dac_march23','
 img/Batchwise/dac_march23.png'),('dac_march22','img/Batchwise/dac_march22.png');
+
+
+mysql> select * from image_master;
++---------+---------------+---------------------------------+
+| path_id | path_name     | url                             |
++---------+---------------+---------------------------------+
+|       1 | tata          | img/Recruiter/tata.png          |
+|       2 | atos          | img/Recruiter/atos.png          |
+|       3 | capgemini     | img/Recruiter/capg.png          |
+|       4 | nse           | img/Recruiter/nse.png           |
+|       5 | financialtech | img/Recruiter/financialtech.png |
+|       6 | dbda_sept22   | img/Batchwise/dbda_sept22.png   |
+|       7 | dbda_march22  | img/Batchwise/dbda_march22.png  |
+|       8 | dbda_march23  | img/Batchwise/dbda_march23.png  |
+|       9 | dac_sept22    | img/Batchwise/dac_sept22.png    |
+|      10 | dac_march23   | img/Batchwise/dac_march23.png   |
+|      11 | dac_march22   | img/Batchwise/dac_march22.png   |
++---------+---------------+---------------------------------+
+
++---------+---------------+---------------------------------+------+
+| path_id | path_name     | url                             | aid  |
++---------+---------------+---------------------------------+------+
+|       1 | tata          | img/Recruiter/tata.png          | NULL |
+|       2 | atos          | img/Recruiter/atos.png          | NULL |
+|       3 | capgemini     | img/Recruiter/capg.png          | NULL |
+|       4 | nse           | img/Recruiter/nse.png           | NULL |
+|       5 | financialtech | img/Recruiter/financialtech.png | NULL |
+|       6 | dbda_sept22   | img/Batchwise/dbda_sept22.png   | NULL |
+|       7 | dbda_march22  | img/Batchwise/dbda_march22.png  | NULL |
+|       8 | dbda_march23  | img/Batchwise/dbda_march23.png  | NULL |
+|       9 | dac_sept22    | img/Batchwise/dac_sept22.png    | NULL |
+|      10 | dac_march23   | img/Batchwise/dac_march23.png   | NULL |
+|      11 | dac_march22   | img/Batchwise/dac_march22.png   | NULL |
++---------+---------------+---------------------------------+------+
+
++----------+-------------------+----------------------+
+| album_id | album_name        | is_active            |
++----------+-------------------+----------------------+
+|        1 | Recruiter         | 0x01                 |
+|        2 | batch1            | 0x01                 |
+|        3 | batch2            | 0x01                 |
+|        4 | DBDA March 2023   | 0x01                 |
+|        5 | DBDA Sept 2022    | 0x01                 |
+|        6 | DBDA March 2022   | 0x01                 |
+|        7 | PG DAC Sept 2022  | 0x01                 |
+|        8 | PG DAC March 2023 | 0x01                 |
+|        9 | PG DAC March 2022 | 0x01                 |
++----------+-------------------+----------------------+
+
+

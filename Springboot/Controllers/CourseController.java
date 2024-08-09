@@ -1,6 +1,7 @@
 package com.example.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,6 +48,10 @@ public class CourseController {
     public void updateCourse(@RequestBody Courses course, @PathVariable int id) {
         courseService.updateCourse(course, id);
     }
+	@GetMapping(value="/api/admin/course/{id}")
+	public Optional<Courses> getbyid(@PathVariable int id) {
+		return courseService.getId(id);
+	}
 	@DeleteMapping(value="/api/admin/course/{id}")
 	public void removecourse(@PathVariable int id) {
 		courseService.softDeleteCourse(id);

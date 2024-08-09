@@ -50,8 +50,6 @@ public class CourseServiceImpl implements CourseService
 	            course.isCourseIsActive(),
 	            course.getCourseName(),
 	            course.getCourseSyllabus(),
-	            course.getCoverPhoto(),
-	            course.getVideoId(),
 	            id
 	        );
 	 }
@@ -60,4 +58,9 @@ public class CourseServiceImpl implements CourseService
 	 public void softDeleteCourse(int id) {
 	        courseRepository.deleteById(id);
 	    }
+
+	@Override
+	public Optional<Courses> getId(int id) {
+		return courseRepository.findById(id);
+	}
 }

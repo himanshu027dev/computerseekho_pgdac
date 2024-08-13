@@ -40,15 +40,7 @@ CREATE TABLE Staff_Master (
 );
 
 
-CREATE TABLE Video_Master (
-    video_id INT PRIMARY KEY AUTO_INCREMENT,
-    video_description VARCHAR(60),
-    video_url VARCHAR(255),
-    batch_id INT,
-    start_date DATE,
-    end_date DATE,
-    video_is_active BOOLEAN
-);
+
 
 CREATE TABLE Student_Master (
     student_id INT PRIMARY KEY auto_increment,
@@ -84,7 +76,7 @@ CREATE TABLE Enquiry (
     enquiry_processed_flag BOOLEAN,
     course_id INT,
     staff_id INT,
-    student_name VARCHAR(255),
+9
     enquiry_counter INT,
     follow_up_date DATE,
     FOREIGN KEY (closure_reasonID) REFERENCES Closure_Reason_Master(closure_reasonID),
@@ -108,20 +100,13 @@ CREATE TABLE Image_Master (
     image_is_active BOOLEAN,
     FOREIGN KEY (album_id) REFERENCES Album_Master(album_id)
 );
-CREATE TABLE Payment_Type_Master (
-    payment_typeID INT PRIMARY KEY AUTO_INCREMENT,
-    payment_type_desc VARCHAR(255)
-);
-CREATE TABLE Closure_Reason_Master (
-    closure_reasonID INT PRIMARY KEY AUTO_INCREMENT,
-    closure_reason_desc VARCHAR(255)
-);
+
 
 CREATE TABLE Followup (
     followup_id INT PRIMARY KEY AUTO_INCREMENT,
     enquiry_id INT,
     staff_id INT,
-    followup_date DATE,
+    followup_date DATE, 
     followup_msg VARCHAR(150),
     is_active BOOLEAN,
     FOREIGN KEY (enquiry_id) REFERENCES Enquiry(enquiry_id),
@@ -137,7 +122,6 @@ CREATE TABLE Payment (
     amount DECIMAL(10, 2),
     FOREIGN KEY (payment_typeID) REFERENCES Payment_Type_Master(payment_typeID),
     FOREIGN KEY (student_id) REFERENCES Student_Master(student_id),
-    FOREIGN KEY (course_id) REFERENCES Course_Master(course_id),
     FOREIGN KEY (batch_id) REFERENCES Batch_Master(batch_id)
 );
 

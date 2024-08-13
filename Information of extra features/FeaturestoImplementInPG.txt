@@ -1,9 +1,0 @@
-features of advance java to implement in pg
-1. JWT
-2. spring security in_memory form login
-3. JPA one to many 
-4. Rest JPA custom methods
-5. CRUD JPA ----(basic starting point)
-6. DTO class
-7. Spring boot profile (various application.properties)
-8. JUnit testing

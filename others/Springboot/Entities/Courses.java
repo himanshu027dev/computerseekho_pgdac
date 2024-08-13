@@ -16,9 +16,7 @@ public class Courses {
     private int courseDuration;
     private String courseSyllabus;
     private boolean courseIsActive;
-    private String coverPhoto;
-    private int videoId;
-
+   
     // Getters and Setters
     public int getCourseId() {
         return courseId;
@@ -68,19 +66,5 @@ public class Courses {
         this.courseIsActive = courseIsActive;
     }
 
-    public String getCoverPhoto() {
-        return coverPhoto;
-    }
-
-    public void setCoverPhoto(String coverPhoto) {
-        this.coverPhoto = coverPhoto;
-    }
-
-    public int getVideoId() {
-        return videoId;
-    }
-
-    public void setVideoId(int videoId) {
-        this.videoId = videoId;
-    }
+    
 }

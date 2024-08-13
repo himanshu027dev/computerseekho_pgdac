@@ -23,14 +23,12 @@ public interface CourseRepository extends JpaRepository<Courses, Integer> {
 	
 	@Modifying
     @Transactional
-    @Query("UPDATE Courses c SET c.courseDescription = :description, c.courseDuration = :duration, c.courseIsActive = :isActive, c.courseName = :name, c.courseSyllabus = :syllabus, c.coverPhoto = :photo, c.videoId = :videoId WHERE c.courseId = :id")
+    @Query("UPDATE Courses c SET c.courseDescription = :description, c.courseDuration = :duration, c.courseIsActive = :isActive, c.courseName = :name, c.courseSyllabus = :syllabus WHERE c.courseId = :id")
     void updateCourseDetails(@Param("description") String courseDescription,
                              @Param("duration") int courseDuration,
                              @Param("isActive") boolean courseIsActive,
                              @Param("name") String courseName,
                              @Param("syllabus") String courseSyllabus,
-                             @Param("photo") String coverPhoto,
-                             @Param("videoId") int videoId,
                              @Param("id") int id);
 }
 	

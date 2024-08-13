@@ -1,6 +1,7 @@
 package com.example.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.Entities.Courses;
 
@@ -13,4 +14,5 @@ public interface CourseService {
 	public void addCourse(Courses course);
 	public void updateCourse(Courses course, int id);
 	public void softDeleteCourse(int id);
+	public Optional<Courses> getId(int id);
 }
